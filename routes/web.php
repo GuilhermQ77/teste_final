@@ -3,12 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AlunoController;
-use App\Http\Controllers\ProfessorController;
-use App\Http\Controllers\CursoController;
-use App\Http\Controllers\TurmaController;
-use App\Models\Curso;
-use App\Models\Professor;
-use App\Models\Turma;
+
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,9 +20,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('aluno', AlunoController::class);
     Route::get('contato/aluno', [AlunoController::class, 'contato']);
-    Route::resource('curso', CursoController::class);
-    Route::resource('turma', TurmaController::class);
-    Route::resource('professor', ProfessorController::class);
+   
 });
 
 
