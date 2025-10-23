@@ -4,13 +4,12 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PublicacaoController;
 use App\Http\Controllers\EmpresaController;
-use App\Http\Controllers\UsuarioController;
 use App\Models\Publicacao;
 use App\Models\Usuario;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', [PublicacaoController::class, 'publicacoes'])->name('publicacao.index');
+Route::get('/', [PublicacaoController::class, 'index']);
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -26,7 +25,7 @@ Route::middleware('auth')->group(function () {
    
 });
 
-
+Route::get('/publicacoes', [PublicacaoController::class, 'index'])->name('publicacoes.index');
 
 
 require __DIR__ . '/auth.php';
