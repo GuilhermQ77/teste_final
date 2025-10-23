@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Publicacao extends Model
 {
-    protected $table = "publicacao.csv";
+    protected $table = "publicacao";
     protected $fillable = ['foto','titulo_prato','locals','cidade'];
     public $timestamps = false;
 }

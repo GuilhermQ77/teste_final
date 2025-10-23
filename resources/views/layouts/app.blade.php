@@ -14,45 +14,8 @@
 
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-</head>
 
-<body class="font-sans antialiased">
-    <main>
-        <div class="container">
-            <div>
-                <ul class="nav nav-pills">
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Aluno</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('aluno.create')}}">Cadastrar</a>
-                            <a class="dropdown-item" href="{{ route('aluno.index')}}">Listar</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Professor</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('professor.create')}}">Cadastrar</a>
-                            <a class="dropdown-item" href="{{ route('professor.index')}}">Listar</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Curso</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('curso.create')}}">Cadastrar</a>
-                            <a class="dropdown-item" href="{{ route('curso.index')}}">Listar</a>
-                        </div>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-expanded="false">Turma</a>
-                        <div class="dropdown-menu">
-                            <a class="dropdown-item" href="{{ route('turma.create')}}">Cadastrar</a>
-                            <a class="dropdown-item" href="{{ route('turma.index')}}">Listar</a>
-                        </div>
-                    </li>
-                </ul>
-            </div>
             @yield('content')
-        </div>
     </main>
     <footer>
         <center>

@@ -2,8 +2,11 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AlunoController;
-
+use App\Http\Controllers\PublicacaoController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\UsuarioController;
+use App\Models\Publicacao;
+use App\Models\Usuario;
 
 Route::get('/', function () {
     return view('welcome');
@@ -18,8 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('aluno', AlunoController::class);
-    Route::get('contato/aluno', [AlunoController::class, 'contato']);
+    Route::resource('publicacao', PublicacaoController::class);
+    Route::resource('empresa', EmpresaController::class);
    
 });
 
