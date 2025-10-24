@@ -22,7 +22,7 @@
 
                     @guest
                     <img src="imagens/logo/logo_sabor_do_brasil.png" class="w-24 h-24 rounded-full mb-4 object-cover">
-                    <h2 class="text-xl">Sabor do Brasil</h2>
+                    <h2 class="text-xl"></h2>
                     <hr class="mb-4 border-3 border-[#D97014] w-3/4">
                     @endguest
                 </div>
