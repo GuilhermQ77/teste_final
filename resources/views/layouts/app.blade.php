@@ -8,7 +8,7 @@
     <title>Document</title>
 
     <script src="https://cdn.tailwindcss.com"></script>
-    @vite(['resources/css/app.css', 'resources/js/app.js']);
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>
@@ -33,8 +33,16 @@
                 @yield('content')
             </div>
 
-            <div class="p-6 bg-100 border">
-                <h3></h3>
+            <div class="p-6 bg-100 border justify-between items-center">
+                @auth
+                <form action="{{route('logout')}}" method="post">
+                    @csrf
+                    <button type="submit">Sair</button>
+                </form>
+                @endauth
+                @guest
+                <button type="submit">Entrar</button>
+                @endguest
             </div>
 
 
@@ -51,9 +59,15 @@
                 </div>
 
 
-                <div class=" col-span-2 flex flex-col items-center">
-                    <img src="/public/imagens/icones" alt="">
+                <div class=" col-span-2 flex-col items-center flex">
+                    <a href="#">
+                    <img src="{{ asset('imagens/icones/Instagram.svg') }}" alt="">
+                    </a>
+                    <img src="/public/imagens/icones/Instagram.svg" alt="">
+                    <img src="/public/imagens/icones/Instagram.svg" alt="">
+                    <img src="/public/imagens/icones/Instagram.svg" alt="">
                 </div>
+
 
                 <div class="  flex flex-col items-center text-white" >
                     <h3>Copyright-2024</h3>
