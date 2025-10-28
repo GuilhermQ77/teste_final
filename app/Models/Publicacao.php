@@ -7,6 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Publicacao extends Model
 {
     protected $table = "publicacao";
-    protected $fillable = ['foto','titulo_prato','locals','cidade'];
+    protected $fillable = ['foto','titulo_prato','locals','cidade','like','deslike'];
     public $timestamps = false;
 }

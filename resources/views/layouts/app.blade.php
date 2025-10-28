@@ -60,12 +60,10 @@
 
 
                 <div class=" col-span-2 flex-col items-center flex">
-                    <a href="#">
-                    <img src="{{ asset('imagens/icones/Instagram.svg') }}" alt="">
-                    </a>
-                    <img src="/public/imagens/icones/Instagram.svg" alt="">
-                    <img src="/public/imagens/icones/Instagram.svg" alt="">
-                    <img src="/public/imagens/icones/Instagram.svg" alt="">
+                   <img src="imagens/icones/Whatsapp.svg" alt="Whatsapp">
+                   <img src="" alt="">
+                   <img src="" alt="">
+                   <img src="" alt="">
                 </div>
 
 
