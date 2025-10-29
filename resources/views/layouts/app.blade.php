@@ -13,7 +13,7 @@
 
 <body>
     <div class="flex-grow container-none mx-auto border">
-        <div class="grid grid-cols-4 w-full ">
+        <div class="grid grid-cols-4 w-full min-h-screen">
             <div class="p-6 border">
                 <div class="flex flex-col items-center">
                     @auth
@@ -33,7 +33,7 @@
                 @yield('content')
             </div>
 
-            <div class="p-6 bg-100 border justify-between items-center">
+            <div class="p-6 bg-100 border justify-between items-center flex flex-col h-full">
                 @auth
                 <form action="{{route('logout')}}" method="post">
                     @csrf

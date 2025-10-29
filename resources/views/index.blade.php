@@ -19,14 +19,15 @@
     <div class="mt-2 grid grid-cols-2 grid-rows-2 px-2 ">
         <p>{{$publicacao->locals}}</p>
         <p>{{$publicacao->cidade}}</p>
-        <div class="mt-2 flex gap-4">
-            <div class="flex items-center">
+    </div>
+        <div class=" mt-2 grid grid-cols-2 grid-rows-2 px-2 ">
+            <div class="flex items-center ">
                 <p>{{$publicacao->like}}</p>
                 <form action="{{ route('like')}}" method="post">
                     @csrf
-                    <input type="hidden" name="publicacao_id" value="1">
+                    <input type="hidden" name="publicacao_id" value="{{ $publicacao->id }}">
                     <button type="submit" class="btn btn-primary">
-                        <img src="{{ asset('flecha_cima_cheia.svg') }}" alt="Incrementar" style="width:20px; height:20px;">
+                        <img src="{{ asset('imagens/icones/flecha_cima_vazia.svg') }}" alt="Curtir" style="width:20px; height:20px;">
                     </button>
                 </form>
             </div>
@@ -34,15 +35,14 @@
                 <p>{{$publicacao->dislike}}</p>
                 <form action="{{ route('dislike')}}" method="post">
                     @csrf
-                    <input type="hidden" name="publicacao_id" value="1">
+                    <input type="hidden" name="publicacao_id" value="{{ $publicacao->id }}">
                     <button type="submit" class="btn btn-primary">
-                        <img src="{{ asset('imagens/flecha_cima_cheia.svg') }}" alt="Incrementar" style="width:20px; height:20px;">
+                        <img src="{{ asset('imagens/icones/flecha_baixo_vazia.svg') }}" alt="Não curtir" style="width:20px; height:20px;">
                     </button>
                 </form>
             </div>
 
         
         </div>
-    </div>
     @endforeach
     @endsection
