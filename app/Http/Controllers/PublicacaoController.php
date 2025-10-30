@@ -3,26 +3,42 @@
 namespace App\Http\Controllers;
 
 use App\Models\Publicacao;
+use App\Models\Comentario;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PublicacaoController extends Controller
 {
-    public function like($id)
+    public function like(Publicacao $publicacao)
     {
-        $publicacao = Publicacao::findOrFail($id);
-        $publicacao->like++;
-        $publicacao->update();
+        // Increment the like counter on the publication
+        $publicacao->like = ($publicacao->like ?? 0) + 1;
+        $publicacao->save();
 
-        return redirect()->back()->with('success', 'Curtiu!');
+        return back();
     }
-    public function dislike($id)
+    public function dislike(Publicacao $publicacao)
     {
-        $publicacao = Publicacao::findOrFail($id);
-        $publicacao->dislike++;
-        $publicacao->update();
+        // Increment the dislike counter on the publication
+        $publicacao->dislike = ($publicacao->dislike ?? 0) + 1;
+        $publicacao->save();
 
-        return redirect()->back()->with('success', 'Curtiu!');
+        return back();
     }
+
+    public function comentar(Request $request, Publicacao $publicacao)
+    {
+        $request->validate([
+            'comentario' => 'required|string|max:1000',
+        ]);
+        $publicacao->comentarios()->create([
+            'comentario' => $request->comentario,
+            'user_id' => Auth::id(),
+        ]);
+
+        return back();
+    }
+     
 
     public function index()
     {

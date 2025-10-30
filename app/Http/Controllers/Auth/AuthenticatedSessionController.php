@@ -28,6 +28,25 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
+        // Prefer explicit redirect provided by the login form (modal).
+        $redirectTo = $request->input('redirect_to');
+        if (!empty($redirectTo)) {
+            // Normalize and ensure it's the same host (avoid open redirect)
+            $parsed = parse_url($redirectTo);
+            if ($parsed === false) {
+                return redirect('/');
+            }
+
+            // If host is present, only allow same-host redirects
+            if (isset($parsed['host']) && $parsed['host'] !== $request->getHost()) {
+                return redirect('/');
+            }
+
+            $path = ($parsed['path'] ?? '/') . (isset($parsed['query']) ? '?' . $parsed['query'] : '');
+            return redirect()->to($path);
+        }
+
+        // Fallback to intended (default)
         return redirect()->intended(route('dashboard', absolute: false));
     }
 
