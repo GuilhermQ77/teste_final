@@ -47,7 +47,7 @@ class AuthenticatedSessionController extends Controller
         }
 
         // Fallback to intended (default)
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect('/');
     }
 
     /**

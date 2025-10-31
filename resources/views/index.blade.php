@@ -19,64 +19,68 @@
     <div class="mt-2 grid grid-cols-2 grid-rows-2 px-2 ">
         <p>{{$publicacao->locals}}</p>
         <p>{{$publicacao->cidade}}</p>
-    </div>
+        <div class="inline-flex items-center">
 
-    <div class="flex items-center gap-3">
-        <div class="flex items-center gap-1">
-            <h2 class="text-sm">{{ $publicacao->like ?? 0 }}</h2>
-            @auth
-            <form action="{{ route('publicacoes.like', $publicacao) }}" method="POST">
+            <form action="{{ route('publicacoes.like', $publicacao->id_publicacao) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary ml-1">
-                    <img src="{{ asset('imagens/icones/flecha_cima_vazia.svg') }}" alt="Curtir" style="width:20px; height:20px;">
+                <button type="submit"
+                    @auth
+                    onclick="this.form.submit()"
+                    @endauth
+                    @guest
+                    command="show-modal" commandfor="dialog"
+                    @endguest>
+                    <img src="{{  asset('imagens/icones/' . ($publicacao->user_liked ? 'flecha_cima_cheia.svg' : 'flecha_cima_vazia.svg')) }}" class="w-6 h-6">
                 </button>
+                <span>{{ $publicacao->likes_count}} likes</span>
             </form>
-            @else
-            <button type="button" onclick="openLoginModal()" class="ml-1">
-                <img src="{{ asset('imagens/icones/flecha_cima_vazia.svg') }}" alt="Curtir" style="width:20px; height:20px;">
-            </button>
-            @endauth
-        </div>
 
-        <div class="flex items-center gap-1">
-            <h2 class="text-sm">{{ $publicacao->dislike ?? 0 }}</h2>
-            @auth
-            <form action="{{ route('publicacoes.dislike', $publicacao) }}" method="POST">
+            <form action="{{ route('publicacoes.dislike', $publicacao->id_publicacao) }}" method="POST">
                 @csrf
-                <button type="submit" class="btn btn-primary ml-1">
-                    <img src="{{ asset('imagens/icones/flecha_baixo_vazia.svg') }}" alt="Não curtir" style="width:20px; height:20px;">
+                <button type="submit"
+                    @auth
+                    onclick="this.form.submit()"
+                    @endauth
+                    @guest
+                    command="show-modal" commandfor="dialog"
+                    @endguest>
+                    <img src="{{ asset('imagens/icones/' . ($publicacao->user_disliked ? 'flecha_baixo_cheia.svg' : 'flecha_baixo_vazia.svg')) }}" class="w-6 h-6">
                 </button>
+                <span>{{ $publicacao->deslikes_count}} deslikes</span>
             </form>
-            @else
-            <button type="button" onclick="openLoginModal()" class="ml-1">
-                <img src="{{ asset('imagens/icones/flecha_baixo_vazia.svg') }}" alt="Não curtir" style="width:20px; height:20px;">
-            </button>
-            @endauth
         </div>
+        <div class="inline-flex items-center mt-2">
 
-        <div class="flex items-center justify-end pr-2 gap-2">
-            <button type="button" onclick="toggleComments(this.dataset.id)" data-id="{{ $publicacao->id }}">
-                <img src="{{ asset('imagens/icones/chat.svg') }}" class="w-6 h-6">
+        <button @click=" open=!open">
+            <img src="{{ asset('imagens/icones/chat.svg') }}" class="w-6 h-6">
             </button>
-        </div>
+            <span>{{ $publicacao->comentarios_count ?? $publicacao->comentario->count() }}</span>
 
-        <div id="comments-{{ $publicacao->id }}" style="display:none" class="col-span-2 mt-2 space-y-2">
-            @auth
-            <div>
-                <strong class="font-semibold mb-1">{{Auth::user()->nome}}:</strong>
-                <form action="{{ route('publicacoes.comentar', $publicacao) }}" method="POST" class="flex gap-2">
-                    @csrf
-                    <input type="text" name="comentario" placeholder="Escreva um comentário..." class="border rounded p-1 flex-1" required>
-                    <button type="submit" class="bg-blue-500 text-white px-3 rounded">Comentar</button>
-                </form>
-            </div>
-            @else
-            <div class="col-span-2">
-                <p>Por favor, <button type="button" onclick="openLoginModal()" class="underline text-blue-600">entre</button> para comentar.</p>
-            </div>
-            @endauth
+
+
+
+
         </div>
+        @auth
+        <strong class="font-semibold mb-1">{{Auth::user()->nome}}</strong>
+        <form action="{{ route('publicacoes.comentar', $publicacao->id_publicacao) }}" method="POST" class="flex gap-2">
+            @csrf
+            <input type="text" name="comentario" placeholder="Escreva um comentário..." class="border rounded p-1 flex-1" required>
+            <button type="submit" class="bg-blue-500 text-white px-3 rounded">Comentar</button>
+        </form>
+        @endauth
+        @if($publicacao->comentario && $publicacao->comentario->count() > 0)
+        @foreach($publicacao->comentario as $comentario)
+        <div class="border-t pt-2">
+            <strong class="font-semibold">{{ $comentario->user->name ?? 'Usuário' }}:</strong>
+            <p>{{ $comentario->comentario }}</p>
+            @if($comentario->created_at)
+            <small class="text-gray-500">{{ $comentario->created_at->format('d/m/Y H:i') }}</small>
+            @endif
+        </div>
+        @endforeach
+        @endif
     </div>
 </div>
-    @endforeach
-    @endsection
+@endforeach
+@endsection

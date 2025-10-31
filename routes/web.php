@@ -23,11 +23,9 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::resource('publicacaos', PublicacaoController::class);
     Route::resource('empresa', EmpresaController::class);
-    Route::post('/publicacoes/{publicacao}/like', [PublicacaoController::class, 'like'])->name('publicacoes.like');
-    Route::post('/publicacoes/{publicacao}/dislike', [PublicacaoController::class, 'dislike'])->name('publicacoes.dislike');
-     Route::post('/publicacoes/{publicacao}/comentario', [PublicacaoController::class, 'comentar'])->name('publicacoes.comentar');
-    Route::patch('/comentarios/{comentario}', [PublicacaoController::class, 'atualizarComentario'])->name('comentarios.update');
-   
+    Route::post('/publicacoes/{id_publicacao}/like', [PublicacaoController::class, 'like'])->name('publicacoes.like');
+    Route::post('/publicacoes/{id_publicacao}/dislike', [PublicacaoController::class, 'dislike'])->name('publicacoes.dislike');
+    Route::post('/publicacoes/{id_publicacao}/comentario', [PublicacaoController::class, 'comentario'])->name('publicacoes.comentar');
 });
 Route::get('/publicacoes', [PublicacaoController::class, 'index'])->name('publicacoes.index');
 Route::resource('index', PublicacaoController::class);
