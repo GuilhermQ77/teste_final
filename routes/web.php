@@ -2,14 +2,10 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\PublicacaoController;
-use App\Http\Controllers\EmpresaController;
-use App\Http\Controllers\AvaliacaoController;
-use App\Models\Publicacao;
-use App\Models\Usuario;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TesteQRCodeController;
 
-// Route::get('/', [PublicacaoController::class, 'publicacoes'])->name('publicacao.index');
-Route::get('/', [PublicacaoController::class, 'index']);
+Route::get('index', [HomeController::class, 'index']);
 
 
 Route::get('/dashboard', function () {
@@ -21,14 +17,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::resource('publicacaos', PublicacaoController::class);
-    Route::resource('empresa', EmpresaController::class);
-    Route::post('/publicacoes/{id_publicacao}/like', [PublicacaoController::class, 'like'])->name('publicacoes.like');
-    Route::post('/publicacoes/{id_publicacao}/dislike', [PublicacaoController::class, 'dislike'])->name('publicacoes.dislike');
-    Route::post('/publicacoes/{id_publicacao}/comentario', [PublicacaoController::class, 'comentario'])->name('publicacoes.comentar');
 });
-Route::get('/publicacoes', [PublicacaoController::class, 'index'])->name('publicacoes.index');
-Route::resource('index', PublicacaoController::class);
+route::get(uri:'testeqrcode', action:[TesteQRCodeController::class, 'teste1']);
 
 
 require __DIR__ . '/auth.php';

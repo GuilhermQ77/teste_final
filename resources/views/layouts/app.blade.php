@@ -13,54 +13,21 @@
 
 <body>
     <div class="flex-grow container-none mx-auto px-12 py-8">
-        <div class="grid grid-cols-4 w-full gap-10">
-
-            <div class="p-6 h-screen">
-                <div class="flex flex-col items-center">
-
-                    @auth
-                    <img src="{{ Auth::user()->foto}}" class="w-24 h-24 rounded-full mb-4 object-cover">
-
-                    <h2 class="text-xl font-bold text-[#000000]">{{ Auth::user()->name }}</h2>
-                    @endauth
-                    @guest
-                    <img src="imagens/logo/logo_sabor_do_brasil.png" class="w-24 h-24 rounded-full mb-4 object-cover">
-
-                    <h2 class="text-xl font-bold text-[#000000]">Sabor do Brasil</h2>
-                    @endguest
-
-                    <hr class="mb-4 border-3 border-[#D97014] w-3/4">
-
-                    <div class="flex flex-col items-center gap-2 mt-2">
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm font-semibold">{{ $total_likes ?? 0 }}</span>
-                            <span class="text-sm text-gray-600">likes totais</span>
-                        </div>
-                        <div class="flex items-center gap-2">
-                            <span class="text-sm font-semibold">{{ $total_dislikes ?? 0 }}</span>
-                            <span class="text-sm text-gray-600">dislikes totais</span>
-                        </div>
-                    </div>
-
-                </div>
+        <div class="grid grid-cols-4 w-full border place-items-center">
+            <div class=>
+                <h1>Col span</h1>
             </div>
-            <div class=" col-span-2">
-                @yield('content')
-            </div>
-
-            <div class="flex flex-col items-center justify-between p-6 h-screen">
-                
+            <div class="col-span-2">@yield('content')</div>
+            <div class="flex flex-col items-center justify-between p-6 ">
                 @guest
-                <button command="show-modal" commandfor="dialog" class="rounded-md bg-[#D97014] font-bold text-[#FFFFFF] px-20 py-2 text-sm inset-ring inset-ring-white/5">Entrar</button>
+                <button command="show-modal" commandfor="dialog" class="rounded-md bg-blue-700 font-bold text-[#FFFFFF] px-20 py-2 text-sm inset-ring inset-ring-white/5">Entrar</button>
                 @endguest
                 @auth
                 <form method="POST" action="{{ route('logout') }}">gus
                     @csrf
-                    <button type="submit" class="rounded-md bg-[#D97014] font-bold text-[#FFFFFF] px-20 py-2 text-sm inset-ring inset-ring-white/5">Sair</button>
+                    <button type="submit" class="rounded-md bg-blue-700  font-bold text-[#FFFFFF] px-20 py-2 text-sm inset-ring inset-ring-white/5">Sair</button>
                 </form>
                 @endauth
-
-
 
                 <el-dialog>
                     <dialog id="dialog" aria-labelledby="dialog-title" class="fixed inset-0 size-auto max-h-none max-w-none overflow-y-auto bg-transparent backdrop:bg-transparent">
@@ -92,7 +59,7 @@
                                                     </div>
 
                                                     <div class="py-3 sm:flex sm:flex-row-reverse">
-                                                        <button type="submit" class="inline-flex w-full justify-center rounded-md border bg-[#d97014] px-3 py-2 text-sm font-semibold text-white hover:bg-red-400 sm:ml-3 sm:w-auto">Entrar</button>
+                                                        <button type="submit" class="inline-flex w-full justify-center rounded-md border bg-blue-700 px-3 py-2 text-sm font-semibold text-white hover:bg-red-400 sm:ml-3 sm:w-auto">Entrar</button>
 
                                                         <button type="button" command="close" commandfor="dialog" class="mt-3 inline-flex w-full justify-center rounded-md border border-[#d97014] px-3 py-2 text-sm font-semibold text-black inset-ring inset-ring-white/5 hover:bg-white/20 sm:mt-0 sm:w-auto">Cancelar</button>
                                                     </div>
@@ -111,34 +78,8 @@
         </div>
     </div>
 
-    <footer class="bg-[#d97014] text-[#FFFFFF] justify-items-center px-8 py-8">
-        <div class="container grid grid-cols-3">
-
-            <div class="mb-4 text-left">
-                <p class="text-2xl font-bold text-[#FFFFFF]">Sabor do Brasil</p>
+    </div>
             </div>
-
-            <div class="flex justify-center pt-1.5 gap-20">
-                <a href="">
-                    <img src="imagens\icones\Instagram.svg" alt="Facebook" class="h-7 w-7">
-                </a>
-                <a href="">
-                    <img src="imagens\icones\Twitter.svg" alt="Facebook" class="h-7 w-7">
-                </a>
-                <a href="">
-                    <img src="imagens\icones\Whatsapp.svg" alt="Facebook" class="h-7 w-7">
-                </a>
-                <a href="">
-                    <img src="imagens\icones\Globe.svg" alt="Facebook" class="h-7 w-7">
-                </a>
-            </div>
-
-            <div class="mb-4 text-right">
-                <p class="text-2xl font-bold text-[#FFFFFF]">Copyright - 2024</p>
-            </div>
-
-        </div>
-    </footer>
 </body>
 
 </html>
